@@ -4,7 +4,9 @@ import './App.css';
 function App() {
   return (
     <div className="app">
-      <h1>Duolingo Clone</h1>
+      <nav>
+        
+      </nav>
     </div>
   );
 }
