@@ -3,14 +3,12 @@
   height: 100vh;
   display: flex;
   justify-content: center;
+  flex-direction: column;
 }
 
-.mainContent__globe {
-  background-image: url(https://imgur.com/ac73yEH.png);
-  background-repeat: no-repeat;
-  height: 800px;
-  width: 600px;
-  background-position: center;
+.mainContent__header {
+  display: flex;
+  justify-content: center;
 }
 
 .mainContent__heading {
@@ -31,6 +29,15 @@
   border-radius: 18px;
   font-weight: bold;
   text-transform: uppercase;
+}
+
+.mainContent__footer {
+  display: flex;
+  justify-content: space-evenly;
+  position: fixed;
+  background-color: #0a4a82;
+  width: 100vw;
+  bottom: 0;
 }
 
 #main_signUp {

@@ -2,6 +2,9 @@
   display: flex;
   justify-content: space-around;
   padding: 0 40px;
+  position: fixed;
+  width: 100%;
+  z-index: 1;
 }
 
 .navbar__logo {
@@ -35,15 +38,15 @@
 }
 
 #signUp {
-  background-color: #84DB00;
-  border-color: #84DB00;
+  background-color: #84db00;
+  border-color: #84db00;
   color: white;
-  box-shadow: 0px 5px #61B800;
+  box-shadow: 0px 5px #61b800;
 }
 
 #login {
-  background-color: #FFFFFF;
-  border-color: #FFFFFF;
+  background-color: #ffffff;
+  border-color: #ffffff;
   color: #235390;
   box-shadow: 0px 5px #e0d6d6;
 }
