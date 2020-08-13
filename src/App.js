@@ -28,7 +28,7 @@ function App() {
     <div className="app">
       <Router>
         <Switch>
-          <Route to="/" component={LandingPage} />
+          <Route path="/" component={LandingPage}></Route>
         </Switch>
       </Router>
     </div>

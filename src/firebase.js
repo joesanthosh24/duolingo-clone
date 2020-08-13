@@ -7,10 +7,12 @@ const firebaseConfig = {
   projectId: "react-projects-82ad9",
   storageBucket: "react-projects-82ad9.appspot.com",
   messagingSenderId: "490616833461",
-  appId: "1:490616833461:web:3e3af17133327832cb45fc",
+  appId: "1:490616833461:web:3e3af17133327832cb45fc"
 };
 
 const firebaseApp = firebase.initializeApp(firebaseConfig);
 const db = firebaseApp.firestore();
+
+export const auth = firebaseApp.auth();
 
 export default db;
