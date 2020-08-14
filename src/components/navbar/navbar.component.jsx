@@ -1,15 +1,19 @@
 import React, { useState } from "react";
-import { Modal } from "@material-ui/core";
 
 import { auth } from "../../firebase";
 
 import { useDataContext } from "../../context/Provider";
+import { setUser } from "../../context/actions/actions";
 
 import "./navbar.styles.css";
+
+import FormModal from "../form-modal/form-modal.component";
 
 const Navbar = () => {
   const [showSignUpModal, setShowSignUpModal] = useState(false);
   const [showLoginModal, setShowLoginModal] = useState(false);
+
+  const [{ user }, dispatch] = useDataContext();
 
   const signUp = () => {
     setShowSignUpModal(true);
@@ -27,6 +31,18 @@ const Navbar = () => {
     setShowLoginModal(false);
   };
 
+  const submitSignUp = async (email, password) => {
+    const user = await auth.createUserWithEmailAndPassword(email, password);
+
+    setUser(dispatch, user);
+  }
+
+  const submitLogin = async (email, password) => {
+    const user = await auth.signInWithEmailAndPassword(email, password);
+
+    setUser(dispatch, user);
+  }
+
   return (
     <nav className="navbar">
       <img
@@ -37,18 +53,17 @@ const Navbar = () => {
         alt="duolingo logo"
       />
       <div className="navbar__right">
-        <div className="navbar__loginSignUp">
+        {!user ? (<div className="navbar__loginSignUp">
           <button onClick={signUp} id="signUp">
             Get Started
           </button>
           <button onClick={login} id="login">
             Login
           </button>
-        </div>
+        </div>) : <p>Hello {user.user.email}</p>}
       </div>
-      <Modal open={showSignUpModal} onClose={handleCloseSignUp}>
-        <h1>Sign Up</h1>
-      </Modal>
+      <FormModal buttonText="Sign Up" showModal={showSignUpModal} closeModal={handleCloseSignUp} submit={submitSignUp} />
+      <FormModal buttonText="Log In" showModal={showLoginModal} closeModal={handleCloseLogin} submit={submitLogin} />
     </nav>
   );
 };

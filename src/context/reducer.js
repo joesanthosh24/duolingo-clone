@@ -1,4 +1,4 @@
-import { SET_LANGUAGES, SET_SELECTED_LANGUAGE } from "./actions/action-types";
+import { SET_LANGUAGES, SET_SELECTED_LANGUAGE, SET_USER } from "./actions/action-types";
 
 export const initialState = {
   user: null,
@@ -18,6 +18,11 @@ const reducer = (state = initialState, action) => {
         ...state,
         selectedLanguage: action.payload
       };
+    case SET_USER:
+      return {
+        ...state,
+        user: action.payload
+      }
     default:
       return state;
   }

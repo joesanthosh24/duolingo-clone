@@ -11,7 +11,7 @@ import "./App.css";
 import LandingPage from "./pages/landing-page/landing.page.jsx";
 
 function App() {
-  const [{}, dispatch] = useDataContext();
+  const [_, dispatch] = useDataContext();
 
   useEffect(() => {
     db.collection("languages").onSnapshot((snapshot) => {

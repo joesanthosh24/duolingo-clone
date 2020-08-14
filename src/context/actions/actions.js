@@ -1,4 +1,4 @@
-import { SET_LANGUAGES, SET_SELECTED_LANGUAGE } from "./action-types";
+import { SET_LANGUAGES, SET_SELECTED_LANGUAGE, SET_USER } from "./action-types";
 
 export const setLanguages = (dispatch, languages) => {
   dispatch({
@@ -13,3 +13,10 @@ export const setSelectedLanguage = (dispatch, language) => {
     payload: language
   });
 };
+
+export const setUser = (dispatch, user) => {
+  dispatch({
+    type: SET_USER,
+    payload: user
+  });
+}
