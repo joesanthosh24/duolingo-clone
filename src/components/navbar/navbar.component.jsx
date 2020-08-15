@@ -1,47 +1,24 @@
 import React, { useState } from "react";
-
-import { auth } from "../../firebase";
+import { Avatar } from "@material-ui/core";
 
 import { useDataContext } from "../../context/Provider";
-import { setUser } from "../../context/actions/actions";
+import { openLogin, openSignUp } from "../../context/actions/actions";
 
 import "./navbar.styles.css";
-
-import FormModal from "../form-modal/form-modal.component";
+import FormModalGroup from "../form-modal-group/form-modal-group.component";
 
 const Navbar = () => {
-  const [showSignUpModal, setShowSignUpModal] = useState(false);
-  const [showLoginModal, setShowLoginModal] = useState(false);
-
   const [{ user }, dispatch] = useDataContext();
 
   const signUp = () => {
-    setShowSignUpModal(true);
+    openSignUp(dispatch);
   };
 
   const login = () => {
-    setShowLoginModal(true);
+    openLogin(dispatch);
   };
 
-  const handleCloseSignUp = () => {
-    setShowSignUpModal(false);
-  };
-
-  const handleCloseLogin = () => {
-    setShowLoginModal(false);
-  };
-
-  const submitSignUp = async (email, password) => {
-    const user = await auth.createUserWithEmailAndPassword(email, password);
-
-    setUser(dispatch, user);
-  }
-
-  const submitLogin = async (email, password) => {
-    const user = await auth.signInWithEmailAndPassword(email, password);
-
-    setUser(dispatch, user);
-  }
+  console.log(user);
 
   return (
     <nav className="navbar">
@@ -60,10 +37,9 @@ const Navbar = () => {
           <button onClick={login} id="login">
             Login
           </button>
-        </div>) : <p>Hello {user.user.email}</p>}
+        </div>) : <Avatar alt={user?.username} />}
       </div>
-      <FormModal buttonText="Sign Up" showModal={showSignUpModal} closeModal={handleCloseSignUp} submit={submitSignUp} />
-      <FormModal buttonText="Log In" showModal={showLoginModal} closeModal={handleCloseLogin} submit={submitLogin} />
+      <FormModalGroup />
     </nav>
   );
 };

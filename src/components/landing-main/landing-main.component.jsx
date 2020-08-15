@@ -7,15 +7,17 @@ import "./landing-main.styles.css";
 import FooterLanguage from "../footer-language/footer-language.component";
 
 const MainContent = () => {
-  const [{ languages }] = useDataContext();
+  const [{ languages, user }] = useDataContext();
 
   return (
     <div className="mainContent">
       <div className="mainContent__header">
         <div className="mainContent__heading">
           <h1>Learn a language for free. Forever</h1>
-          <button id="main_signUp">Get Started</button>
-          <button id="main_login">Already Have an Account</button>
+          {!user ? (<><button id="main_signUp">Get Started</button>
+          <button id="main_login">Already Have an Account</button></>) : (<div>
+            <p>Hello {user?.username}</p>
+          </div>)}
         </div>
       </div>
       <div className="mainContent__footer">

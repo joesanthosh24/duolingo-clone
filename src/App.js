@@ -1,9 +1,9 @@
 import React, { useEffect } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
-import db from "./firebase";
+import db, { auth } from "./firebase";
 
-import { setLanguages } from "./context/actions/actions";
+import { setLanguages, setUser } from "./context/actions/actions";
 import { useDataContext } from "./context/Provider";
 
 import "./App.css";
@@ -22,7 +22,15 @@ function App() {
 
       setLanguages(dispatch, languages);
     });
-  });
+  }, [dispatch]);
+
+  useEffect(() => {
+    auth.onAuthStateChanged(authUser => {
+      if(authUser) {
+        setUser(dispatch, authUser);
+      }
+    });
+  }, [dispatch]);
 
   return (
     <div className="app">

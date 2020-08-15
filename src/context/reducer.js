@@ -1,9 +1,19 @@
-import { SET_LANGUAGES, SET_SELECTED_LANGUAGE, SET_USER } from "./actions/action-types";
+import {
+  SET_LANGUAGES,
+  SET_SELECTED_LANGUAGE,
+  SET_USER,
+  OPEN_LOGIN,
+  OPEN_SIGN_UP,
+  CLOSE_LOGIN,
+  CLOSE_SIGN_UP,
+} from "./actions/action-types";
 
 export const initialState = {
   user: null,
   languages: [],
-  selectedLanguage: null
+  selectedLanguage: null,
+  signUpModalOpen: false,
+  loginModalOpen: false,
 };
 
 const reducer = (state = initialState, action) => {
@@ -11,18 +21,38 @@ const reducer = (state = initialState, action) => {
     case SET_LANGUAGES:
       return {
         ...state,
-        languages: action.payload
+        languages: action.payload,
       };
     case SET_SELECTED_LANGUAGE:
       return {
         ...state,
-        selectedLanguage: action.payload
+        selectedLanguage: action.payload,
       };
     case SET_USER:
       return {
         ...state,
-        user: action.payload
-      }
+        user: action.payload,
+      };
+    case OPEN_LOGIN:
+      return {
+        ...state,
+        loginModalOpen: true,
+      };
+    case CLOSE_LOGIN:
+      return {
+        ...state,
+        loginModalOpen: false,
+      };
+    case OPEN_SIGN_UP:
+      return {
+        ...state,
+        signUpModalOpen: true,
+      };
+    case CLOSE_SIGN_UP:
+      return {
+        ...state,
+        signUpModalOpen: false,
+      };
     default:
       return state;
   }
