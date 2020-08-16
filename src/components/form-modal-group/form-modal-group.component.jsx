@@ -8,7 +8,6 @@ import { closeLogin, closeSignUp } from "../../context/actions/actions";
 import FormModal from "../form-modal/form-modal.component";
 
 const FormModalGroup = () => {
-
   const [{ signUpModalOpen, loginModalOpen }, dispatch] = useDataContext();
 
   const handleCloseSignUp = () => {
@@ -20,13 +19,18 @@ const FormModalGroup = () => {
   };
 
   const submitSignUp = async (email, password, username) => {
-    auth.createUserWithEmailAndPassword(email, password)
-    .then(user => {
-      database.collection("users").add({
-        username: username,
-        email: email,
-        _id: user.user.uid
-      });
+    auth.createUserWithEmailAndPassword(email, password).then((user) => {
+      return user.user
+        .updateProfile({
+          displayName: username,
+        })
+        .then((res) => {
+          database.collection("users").add({
+            username: username,
+            email: email,
+            _id: user.user.uid,
+          });
+        });
     });
   };
 

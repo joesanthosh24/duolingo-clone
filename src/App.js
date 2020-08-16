@@ -1,5 +1,9 @@
 import React, { useEffect } from "react";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch,
+} from "react-router-dom";
 
 import db, { auth } from "./firebase";
 
@@ -9,6 +13,7 @@ import { useDataContext } from "./context/Provider";
 import "./App.css";
 
 import LandingPage from "./pages/landing-page/landing.page.jsx";
+import AccountPage from "./pages/account/account.page";
 
 function App() {
   const [_, dispatch] = useDataContext();
@@ -17,7 +22,7 @@ function App() {
     db.collection("languages").onSnapshot((snapshot) => {
       const languages = snapshot.docs.map((doc) => ({
         id: doc.id,
-        language: doc.data()
+        language: doc.data(),
       }));
 
       setLanguages(dispatch, languages);
@@ -25,9 +30,16 @@ function App() {
   }, [dispatch]);
 
   useEffect(() => {
-    auth.onAuthStateChanged(authUser => {
-      if(authUser) {
-        setUser(dispatch, authUser);
+    auth.onAuthStateChanged((authUser) => {
+      if (authUser) {
+        console.log("In user auth state");
+        db.collection("users").onSnapshot((sn) => {
+          const user = sn.docs.find(
+            (user) => user.data().username === authUser.displayName
+          );
+
+          setUser(dispatch, user?.data());
+        });
       }
     });
   }, [dispatch]);
@@ -36,7 +48,8 @@ function App() {
     <div className="app">
       <Router>
         <Switch>
-          <Route path="/" component={LandingPage}></Route>
+          <Route path="/account" component={AccountPage} />
+          <Route path="/" component={LandingPage} />
         </Switch>
       </Router>
     </div>

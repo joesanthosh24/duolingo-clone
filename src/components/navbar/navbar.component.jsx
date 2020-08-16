@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-import { Avatar } from "@material-ui/core";
+import React from "react";
 
 import { useDataContext } from "../../context/Provider";
 import { openLogin, openSignUp } from "../../context/actions/actions";
@@ -30,14 +29,14 @@ const Navbar = () => {
         alt="duolingo logo"
       />
       <div className="navbar__right">
-        {!user ? (<div className="navbar__loginSignUp">
+        <div className="navbar__loginSignUp">
           <button onClick={signUp} id="signUp">
             Get Started
           </button>
           <button onClick={login} id="login">
             Login
           </button>
-        </div>) : <Avatar alt={user?.username} />}
+        </div>
       </div>
       <FormModalGroup />
     </nav>
