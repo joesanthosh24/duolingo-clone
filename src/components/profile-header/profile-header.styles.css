@@ -1,0 +1,29 @@
+.profileHeader {
+  display: flex;
+  border-bottom: 2px solid #e5e5e5;
+}
+
+.profileHeader__main {
+  display: flex;
+  padding: 10px;
+}
+
+.profileHeader__section {
+  display: flex;
+  align-items: center;
+}
+
+.profileHeader__section > img {
+  height: 40px;
+  width: 40px;
+}
+
+.profileHeader__section > .MuiIconButton-root {
+  border: 1px solid lightgray;
+  height: 40px;
+  width: 40px;
+}
+
+.profileHeader__section > .MuiSvgIcon-root {
+  font-size: 40px;
+}

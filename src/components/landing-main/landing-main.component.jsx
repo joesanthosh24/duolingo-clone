@@ -5,14 +5,14 @@ import { useDataContext } from "../../context/Provider";
 
 import "./landing-main.styles.css";
 
-import FooterLanguage from "../footer-language/footer-language.component";
+import Language from "../language/language.component";
 
 const MainContent = () => {
   const history = useHistory();
   const [{ languages, user }] = useDataContext();
 
   useEffect(() => {
-    return function initialize() {
+    function initialize() {
       if(user) {
         history.push('/account');
       }
@@ -20,7 +20,9 @@ const MainContent = () => {
         return;
       }
     }
-  }, [user, history]);
+
+    initialize();
+  }, [user]);
 
   return (
     <div className="mainContent">
@@ -33,7 +35,7 @@ const MainContent = () => {
       </div>
       <div className="mainContent__footer">
         {languages.map(({ id, language: { name, flagUrl } }) => {
-          return <FooterLanguage key={id} name={name} flagUrl={flagUrl} />;
+          return <Language key={id} name={name} flagUrl={flagUrl} />;
         })}
       </div>
     </div>

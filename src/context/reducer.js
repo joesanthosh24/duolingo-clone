@@ -26,7 +26,7 @@ const reducer = (state = initialState, action) => {
     case SET_SELECTED_LANGUAGE:
       return {
         ...state,
-        selectedLanguage: action.payload,
+        selectedLanguage: state.languages.filter(lang => action.payload.id === lang.id),
       };
     case SET_USER:
       return {
