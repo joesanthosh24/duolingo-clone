@@ -6,7 +6,8 @@ import {
   OPEN_SIGN_UP,
   CLOSE_LOGIN,
   CLOSE_SIGN_UP,
-  LOG_OUT
+  LOG_OUT,
+  CHANGE_COLOR
 } from "./action-types";
 
 export const setLanguages = (dispatch, languages) => {
@@ -58,4 +59,11 @@ export const logOut = (dispatch) => {
   dispatch({
     type: LOG_OUT
   })
+}
+
+export const changeColor = (dispatch, color) => {
+  dispatch({
+    type: CHANGE_COLOR,
+    payload: color
+  });
 }

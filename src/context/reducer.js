@@ -7,6 +7,7 @@ import {
   CLOSE_LOGIN,
   CLOSE_SIGN_UP,
   LOG_OUT,
+  CHANGE_COLOR
 } from "./actions/action-types";
 
 export const initialState = {
@@ -15,6 +16,7 @@ export const initialState = {
   selectedLanguage: null,
   signUpModalOpen: false,
   loginModalOpen: false,
+  color: ""
 };
 
 const reducer = (state = initialState, action) => {
@@ -58,6 +60,11 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         user: null
+      }
+    case CHANGE_COLOR:
+      return {
+        ...state,
+        color: action.payload
       }
     default:
       return state;

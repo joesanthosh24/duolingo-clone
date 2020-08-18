@@ -7,7 +7,7 @@ import {
 
 import db, { auth } from "./firebase";
 
-import { setLanguages, setUser } from "./context/actions/actions";
+import { setLanguages, setUser, changeColor } from "./context/actions/actions";
 import { useDataContext } from "./context/Provider";
 
 import "./App.css";
@@ -16,7 +16,7 @@ import LandingPage from "./pages/landing-page/landing.page.jsx";
 import AccountPage from "./pages/account/account.page";
 
 function App() {
-  const [_, dispatch] = useDataContext();
+  const [{ color }, dispatch] = useDataContext();
 
   useEffect(() => {
     db.collection("languages").onSnapshot((snapshot) => {
@@ -45,7 +45,7 @@ function App() {
   }, [dispatch]);
 
   return (
-    <div className="app">
+    <div className="app" style={{ backgroundColor: color }}>
       <Router>
         <Switch>
           <Route path="/account" component={AccountPage} />
