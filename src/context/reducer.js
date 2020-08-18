@@ -6,6 +6,7 @@ import {
   OPEN_SIGN_UP,
   CLOSE_LOGIN,
   CLOSE_SIGN_UP,
+  LOG_OUT,
 } from "./actions/action-types";
 
 export const initialState = {
@@ -53,6 +54,11 @@ const reducer = (state = initialState, action) => {
         ...state,
         signUpModalOpen: false,
       };
+    case LOG_OUT:
+      return {
+        ...state,
+        user: null
+      }
     default:
       return state;
   }

@@ -3,7 +3,13 @@ import { Modal } from "@material-ui/core";
 
 import "./form-modal.styles.css";
 
-const FormModal = ({ showModal, closeModal, buttonText, submit }) => {
+const FormModal = ({
+  showModal,
+  closeModal,
+  buttonText,
+  submit,
+  noUsername,
+}) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [username, setUsername] = useState("");
@@ -16,7 +22,7 @@ const FormModal = ({ showModal, closeModal, buttonText, submit }) => {
     setPassword("");
     setUsername("");
     closeModal();
-  }
+  };
 
   return (
     <Modal open={showModal} onClose={closeModal}>
@@ -29,9 +35,26 @@ const FormModal = ({ showModal, closeModal, buttonText, submit }) => {
           alt="duolingo logo"
         />
         <form className="modal__form" onSubmit={submitForm}>
-          <input type="text" placeholder="Username" value={username} onChange={e => setUsername(e.target.value)} />
-          <input type="email" placeholder="Email" value={email} onChange={e => setEmail(e.target.value)} />
-          <input type="password" placeholder="Password" value={password} onChange={e => setPassword(e.target.value)} />
+          {noUsername ? null : (
+            <input
+              type="text"
+              placeholder="Username"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+            />
+          )}
+          <input
+            type="email"
+            placeholder="Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+          <input
+            type="password"
+            placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
           <button type="submit">{buttonText}</button>
         </form>
       </div>

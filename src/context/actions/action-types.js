@@ -5,3 +5,4 @@ export const OPEN_SIGN_UP = "OPEN_SIGN_UP";
 export const OPEN_LOGIN = "OPEN_LOGIN";
 export const CLOSE_SIGN_UP = "CLOSE_SIGN_UP";
 export const CLOSE_LOGIN = "CLOSE_LOGIN";
+export const LOG_OUT = "LOG_OUT";

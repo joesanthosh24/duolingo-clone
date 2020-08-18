@@ -6,6 +6,7 @@ import {
   OPEN_SIGN_UP,
   CLOSE_LOGIN,
   CLOSE_SIGN_UP,
+  LOG_OUT
 } from "./action-types";
 
 export const setLanguages = (dispatch, languages) => {
@@ -52,3 +53,9 @@ export const closeLogin = (dispatch) => {
     type: CLOSE_LOGIN,
   });
 };
+
+export const logOut = (dispatch) => {
+  dispatch({
+    type: LOG_OUT
+  })
+}

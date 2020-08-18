@@ -1,15 +1,28 @@
-import React from "react";
-import { Storefront, MoreHoriz, Whatshot } from "@material-ui/icons";
+import React, { useEffect } from "react";
+import { useHistory } from "react-router-dom";
+import { Storefront, MoreHoriz, Whatshot, ExitToApp } from "@material-ui/icons";
 import { IconButton, Avatar } from "@material-ui/core";
 
 import { useDataContext } from "../../context/Provider";
+import { logOut } from "../../context/actions/actions";
+
+import { auth } from "../../firebase";
 
 import "./profile-header.styles.css";
 
 import Language from "../language/language.component";
 
 const ProfileHeader = () => {
-  const [{ languages }] = useDataContext();
+  const [{ languages, user }, dispatch] = useDataContext();
+  const history = useHistory();
+
+  const logout = () => {
+    auth
+      .signOut()
+      .then((success) => {
+        logOut(dispatch);
+      })
+  };
 
   console.log(languages[0]);
   return (
@@ -42,10 +55,12 @@ const ProfileHeader = () => {
       </div>
       <div className="profileHeader__right">
         <div className="profileHeader__section">
-          <Language
-            name="Japanese"
-            flagUrl="https://pbs.twimg.com/media/Ec46FvxXkAU7Mll.jpg"
-          />
+          {user?.courses ? (
+            <Language
+              name="Japanese"
+              flagUrl="https://c4.wallpaperflare.com/wallpaper/582/318/388/flags-flag-of-japan-flag-japanese-flag-hd-wallpaper-preview.jpg"
+            />
+          ) : null}
         </div>
         <div className="profileHeader__section">
           <img
@@ -65,11 +80,17 @@ const ProfileHeader = () => {
           />
           <span>0</span>
         </div>
-        <div className="profileHeader__section">
-          <Avatar
-            src="//duolingo-images.s3.amazonaws.com/avatars/332507057/wvziqc0s4A/medium"
-            alt="Profile"
-          />
+        {user ? (
+          <div className="profileHeader__section">
+            <Avatar
+              src="//duolingo-images.s3.amazonaws.com/avatars/332507057/wvziqc0s4A/medium"
+              alt="Profile"
+            />
+          </div>
+        ) : null}
+        <div className="profileHeader__section signOut" onClick={logout}>
+          <ExitToApp />
+          <span>Sign Out</span>
         </div>
       </div>
     </div>

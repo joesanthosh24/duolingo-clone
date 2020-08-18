@@ -51,3 +51,13 @@
   font-size: 40px;
   color: var(--duo-alternate-color);
 }
+
+.signOut {
+  border-radius: 20px;
+  border: 1px solid var(--duo-alternate-color);
+}
+
+.signOut:hover {
+  cursor: pointer;
+  background-color: lightgray;
+}

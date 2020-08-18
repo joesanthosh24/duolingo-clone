@@ -51,6 +51,7 @@ const FormModalGroup = () => {
         showModal={loginModalOpen}
         closeModal={handleCloseLogin}
         submit={submitLogin}
+        noUsername
       />
     </Fragment>
   );

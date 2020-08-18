@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useHistory } from "react-router-dom";
 
 import { useDataContext } from "../../context/Provider";
 
@@ -8,12 +9,19 @@ import ProfileHeader from "../../components/profile-header/profile-header.compon
 
 const AccountPage = () => {
   const [{ user }] = useDataContext();
+  const history = useHistory();
+
+  useEffect(() => {
+    if(!user) {
+      history.replace("/");
+    }
+  }, [user]);
 
   return (
     <div className="accountPage">
       {/* ProfileHeader */}
       <ProfileHeader />
-      {/* Lessons */}
+      {/* Lessons or Choose Courses */}
       {/* SideContent */}
     </div>
   );
