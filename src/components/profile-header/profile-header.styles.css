@@ -41,6 +41,10 @@
   width: 40px;
 }
 
+.profileHeader__section > .flag {
+  background-size: 100%;
+}
+
 .profileHeader__section > .MuiIconButton-root {
   border: 1px solid lightgray;
   height: 40px;
@@ -55,6 +59,10 @@
 .signOut {
   border-radius: 20px;
   border: 1px solid var(--duo-alternate-color);
+}
+
+.signOut > .MuiSvgIcon-root {
+  padding: 2px;
 }
 
 .signOut:hover {

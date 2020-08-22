@@ -38,7 +38,7 @@ function App() {
             (user) => user.data().username === authUser.displayName
           );
 
-          setUser(dispatch, user?.data());
+          setUser(dispatch, {id: user?.id, user: user?.data()});
         });
       }
     });

@@ -7,7 +7,9 @@ import {
   CLOSE_LOGIN,
   CLOSE_SIGN_UP,
   LOG_OUT,
-  CHANGE_COLOR
+  CHANGE_COLOR,
+  ADD_LEARNING_LANGUAGE,
+  CLEAR_LEARNING_LANGUAGES
 } from "./action-types";
 
 export const setLanguages = (dispatch, languages) => {
@@ -66,4 +68,17 @@ export const changeColor = (dispatch, color) => {
     type: CHANGE_COLOR,
     payload: color
   });
+}
+
+export const addLearningLanguage = (dispatch, language) => {
+  dispatch({
+    type: ADD_LEARNING_LANGUAGE,
+    payload: language
+  })
+}
+
+export const clearLearningLanguages = dispatch => {
+  dispatch({
+    type: CLEAR_LEARNING_LANGUAGES
+  })
 }

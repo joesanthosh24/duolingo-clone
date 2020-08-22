@@ -7,7 +7,7 @@ import "./navbar.styles.css";
 import FormModalGroup from "../form-modal-group/form-modal-group.component";
 
 const Navbar = () => {
-  const [{ user }, dispatch] = useDataContext();
+  const dispatch = useDataContext()[1];
 
   const signUp = () => {
     openSignUp(dispatch);
@@ -16,8 +16,6 @@ const Navbar = () => {
   const login = () => {
     openLogin(dispatch);
   };
-
-  console.log(user);
 
   return (
     <nav className="navbar">

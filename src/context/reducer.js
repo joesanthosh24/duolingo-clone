@@ -7,7 +7,9 @@ import {
   CLOSE_LOGIN,
   CLOSE_SIGN_UP,
   LOG_OUT,
-  CHANGE_COLOR
+  CHANGE_COLOR,
+  ADD_LEARNING_LANGUAGE,
+  CLEAR_LEARNING_LANGUAGES
 } from "./actions/action-types";
 
 export const initialState = {
@@ -16,7 +18,8 @@ export const initialState = {
   selectedLanguage: null,
   signUpModalOpen: false,
   loginModalOpen: false,
-  color: ""
+  color: "",
+  learningLanguages: [],
 };
 
 const reducer = (state = initialState, action) => {
@@ -29,7 +32,9 @@ const reducer = (state = initialState, action) => {
     case SET_SELECTED_LANGUAGE:
       return {
         ...state,
-        selectedLanguage: state.languages.filter(lang => action.payload.id === lang.id),
+        selectedLanguage: state.languages.filter(
+          (lang) => action.payload.id === lang.id
+        ),
       };
     case SET_USER:
       return {
@@ -59,12 +64,22 @@ const reducer = (state = initialState, action) => {
     case LOG_OUT:
       return {
         ...state,
-        user: null
-      }
+        user: null,
+      };
     case CHANGE_COLOR:
       return {
         ...state,
-        color: action.payload
+        color: action.payload,
+      };
+    case ADD_LEARNING_LANGUAGE:
+      return {
+        ...state,
+        learningLanguages: [...state.learningLanguages, action.payload],
+      };
+    case CLEAR_LEARNING_LANGUAGES:
+      return {
+        ...state,
+        learningLanguages: []
       }
     default:
       return state;

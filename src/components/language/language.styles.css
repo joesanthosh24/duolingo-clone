@@ -1,18 +1,30 @@
-.footerLanguage {
+.language {
   display: flex;
   align-items: center;
   margin-top: 20px;
   margin-bottom: 20px;
 }
 
-.footerLanguage > p {
+.hover {
+  transition: all 400ms ease-in;
+}
+
+.hover:hover {
+  background-color: lightgrey;
+}
+
+.selected {
+  background-color: #84db00 !important;
+}
+
+.language > p {
   font-weight: bold;
   text-transform: uppercase;
   color: white;
   margin-left: 10px;
 }
 
-.footerLanguage__flagContainer {
+.language__flagContainer {
   height: 40px;
   width: 40px;
   background-color: white;
@@ -22,7 +34,7 @@
   border-radius: 12px;
 }
 
-.footerLanguage__flagContainer > img {
+.language__flagContainer > img {
   height: 30px;
   width: 30px;
   object-fit: contain;

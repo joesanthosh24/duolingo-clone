@@ -4,7 +4,7 @@ import { Storefront, MoreHoriz, Whatshot, ExitToApp } from "@material-ui/icons";
 import { IconButton, Avatar } from "@material-ui/core";
 
 import { useDataContext } from "../../context/Provider";
-import { logOut } from "../../context/actions/actions";
+import { logOut, clearLearningLanguages } from "../../context/actions/actions";
 
 import { auth } from "../../firebase";
 
@@ -13,18 +13,17 @@ import "./profile-header.styles.css";
 import Language from "../language/language.component";
 
 const ProfileHeader = () => {
-  const [{ languages, user }, dispatch] = useDataContext();
+  const [{ languages, user, learningLanguages }, dispatch] = useDataContext();
   const history = useHistory();
 
   const logout = () => {
-    auth
-      .signOut()
-      .then((success) => {
-        logOut(dispatch);
-      })
+    auth.signOut().then((success) => {
+      logOut(dispatch);
+      clearLearningLanguages(dispatch);
+    });
   };
 
-  console.log(languages[0]);
+  console.log(learningLanguages[0]);
   return (
     <div className="profileHeader">
       <div className="profileHeader__main">
@@ -55,10 +54,15 @@ const ProfileHeader = () => {
       </div>
       <div className="profileHeader__right">
         <div className="profileHeader__section">
-          {user?.courses ? (
-            <Language
-              name="Japanese"
-              flagUrl="https://c4.wallpaperflare.com/wallpaper/582/318/388/flags-flag-of-japan-flag-japanese-flag-hd-wallpaper-preview.jpg"
+          {learningLanguages?.length > 0 ? (
+            // <Language
+            //   name={learningLanguages[0].name}
+            //   flagUrl={learningLanguages[0].flagUrl}
+            // />
+            <img
+              class="flag"
+              src={learningLanguages[0].flagUrl}
+              alt={learningLanguages[0].name}
             />
           ) : null}
         </div>
