@@ -13,7 +13,7 @@ const LandingPage = ({ languages }) => {
 
   useEffect(() => {
     changeColor(dispatch, "#13518B");
-  }, [])
+  }, [dispatch])
 
   return (
     <div className="accountPage">

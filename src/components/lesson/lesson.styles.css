@@ -1,0 +1,29 @@
+.lesson {
+  text-align: center;
+  margin-top: 80px;
+}
+
+.lesson__container {
+  height: 100px;
+  width: 100px;
+  border-radius: 105px;
+  border: 9px solid var(--duo-alternate-color);
+  display: grid;
+  place-items: center;
+}
+
+.lesson__innerContainer {
+  height: 70px;
+  width: 70px;
+  border: solid var(--duo-alternate-color);
+  border-radius: 40px;
+  display: grid;
+  place-items: center;
+  background-color: var(--duo-alternate-color);
+}
+
+.lesson__innerContainer > .MuiSvgIcon-root {
+  height: 50px;
+  width: 50px;
+  color: #84db00;
+}

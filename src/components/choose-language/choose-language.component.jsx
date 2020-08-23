@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Button } from "@material-ui/core";
 
 import "./choose-language.styles.css";
 
-import db, { auth } from "../../firebase";
+import db from "../../firebase";
 
 import { useDataContext } from "../../context/Provider";
 
@@ -31,7 +31,7 @@ const ChooseLanguage = () => {
         .collection("users")
         .doc(user.id)
         .collection("languages")
-        .add(lang);
+        .add({...lang, lessons: ["Lesson 1", "Lesson 2", "Lesson 3", "Lesson 4", "Lesson 5", "Lesson 6", "Lesson 7", "Lesson 7"]});
     });
   };
 

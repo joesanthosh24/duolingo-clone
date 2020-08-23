@@ -8,7 +8,6 @@ import "./landing-main.styles.css";
 import { openLogin, openSignUp } from "../../context/actions/actions";
 
 import Language from "../language/language.component";
-import FormModalGroup from "../form-modal-group/form-modal-group.component";
 
 const MainContent = () => {
   const history = useHistory();
@@ -25,7 +24,7 @@ const MainContent = () => {
     }
 
     initialize();
-  }, [user]);
+  }, [user, history]);
 
   return (
     <div className="mainContent">

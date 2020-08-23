@@ -1,6 +1,11 @@
 .profileHeader {
   display: flex;
   border-bottom: 2px solid var(--duo-alternate-color);
+  position: fixed;
+  width: 100vw;
+  z-index: 200;
+  background-color: white;
+  top: 0;
 }
 
 .profileHeader__main {

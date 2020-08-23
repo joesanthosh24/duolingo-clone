@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { useHistory } from "react-router-dom";
+import { Button } from "@material-ui/core";
 
 import { useDataContext } from "../../context/Provider";
 import {
@@ -13,6 +14,7 @@ import "./account.styles.css";
 
 import ProfileHeader from "../../components/profile-header/profile-header.component";
 import ChooseLanguage from "../../components/choose-language/choose-language.component";
+import Lesson from "../../components/lesson/lesson.component";
 
 const AccountPage = () => {
   const [{ user, learningLanguages }, dispatch] = useDataContext();
@@ -24,7 +26,7 @@ const AccountPage = () => {
     }
 
     changeColor(dispatch, "white");
-  }, [user]);
+  }, [user, history, dispatch]);
 
   useEffect(() => {
     if (user?.id) {
@@ -33,18 +35,30 @@ const AccountPage = () => {
         .collection("languages")
         .onSnapshot((snapshot) => {
           snapshot.docs.map((doc) => {
-            addLearningLanguage(dispatch, doc.data());
+            return addLearningLanguage(dispatch, doc.data());
           });
         });
     }
-  }, [user]);
+  }, [user, dispatch]);
+
+  console.log(learningLanguages);
 
   return (
     <div className="accountPage">
       <ProfileHeader />
       {/* SideContent */}
       {/* Lessons or Choose Courses */}
-      {learningLanguages?.length > 0 ? <h1>Lessons</h1> : <ChooseLanguage />}
+      {learningLanguages?.length > 0 ? (
+        <div className="accountPage__container">
+          <div className="accountpage__lessons">
+            {learningLanguages[0].lessons.map((lesson) => (
+              <Lesson lessonName={lesson} />
+            ))}
+          </div>
+        </div>
+      ) : (
+        <ChooseLanguage />
+      )}
     </div>
   );
 };

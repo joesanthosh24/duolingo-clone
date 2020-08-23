@@ -1,5 +1,4 @@
-import React, { useEffect } from "react";
-import { useHistory } from "react-router-dom";
+import React from "react";
 import { Storefront, MoreHoriz, Whatshot, ExitToApp } from "@material-ui/icons";
 import { IconButton, Avatar } from "@material-ui/core";
 
@@ -10,11 +9,8 @@ import { auth } from "../../firebase";
 
 import "./profile-header.styles.css";
 
-import Language from "../language/language.component";
-
 const ProfileHeader = () => {
-  const [{ languages, user, learningLanguages }, dispatch] = useDataContext();
-  const history = useHistory();
+  const [{ user, learningLanguages }, dispatch] = useDataContext();
 
   const logout = () => {
     auth.signOut().then((success) => {
@@ -55,12 +51,8 @@ const ProfileHeader = () => {
       <div className="profileHeader__right">
         <div className="profileHeader__section">
           {learningLanguages?.length > 0 ? (
-            // <Language
-            //   name={learningLanguages[0].name}
-            //   flagUrl={learningLanguages[0].flagUrl}
-            // />
             <img
-              class="flag"
+              className="flag"
               src={learningLanguages[0].flagUrl}
               alt={learningLanguages[0].name}
             />
@@ -86,10 +78,7 @@ const ProfileHeader = () => {
         </div>
         {user ? (
           <div className="profileHeader__section">
-            <Avatar
-              src="//duolingo-images.s3.amazonaws.com/avatars/332507057/wvziqc0s4A/medium"
-              alt="Profile"
-            />
+            <Avatar src={user?.user?.profileImg && user.user?.profileImg} alt={user?.user?.username} />
           </div>
         ) : null}
         <div className="profileHeader__section signOut" onClick={logout}>

@@ -7,7 +7,7 @@ import {
 
 import db, { auth } from "./firebase";
 
-import { setLanguages, setUser, changeColor } from "./context/actions/actions";
+import { setLanguages, setUser } from "./context/actions/actions";
 import { useDataContext } from "./context/Provider";
 
 import "./App.css";
