@@ -5,11 +5,12 @@
 
 .accountPage__container {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-evenly;
 }
 
 .accountpage__lessons {
   display: flex;
   flex-direction: column;
   margin-top: 95px;
+  flex: 1;
 }
